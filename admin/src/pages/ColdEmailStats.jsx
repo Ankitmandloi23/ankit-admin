@@ -24,6 +24,7 @@ const ColdEmailStats = () => {
     <div className="cold-email-container">
       <h2>📧 Cold Email Performance</h2>
 
+      {/* Stats cards */}
       <div className="stats-grid">
         {emailStats.map((stat, index) => (
           <div key={index} className="stat-card">
@@ -36,57 +37,63 @@ const ColdEmailStats = () => {
         ))}
       </div>
 
+      {/* Team Performance */}
       <div className="section">
         <h3>👥 Team Performance</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Member</th>
-              <th>Sent</th>
-              <th>Open Rate</th>
-              <th>Replies</th>
-              <th>Conversions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {teamStats.map((member, i) => (
-              <tr key={i}>
-                <td>{member.name}</td>
-                <td>{member.sent}</td>
-                <td>{member.opens}</td>
-                <td>{member.replies}</td>
-                <td>{member.conversions}</td>
+        <div className="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Member</th>
+                <th>Sent</th>
+                <th>Open Rate</th>
+                <th>Replies</th>
+                <th>Conversions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {teamStats.map((member, i) => (
+                <tr key={i}>
+                  <td>{member.name}</td>
+                  <td>{member.sent}</td>
+                  <td>{member.opens}</td>
+                  <td>{member.replies}</td>
+                  <td>{member.conversions}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
+      {/* Follow-Up Manager */}
       <div className="section">
         <h3>📅 Follow-Up Manager</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Email</th>
-              <th>Days Since Contact</th>
-              <th>Follow-Up #</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {followUps.map((item, i) => (
-              <tr key={i}>
-                <td>{item.email}</td>
-                <td>{item.daysSince}</td>
-                <td>{item.followUp}</td>
-                <td>{item.action}</td>
+        <div className="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Days Since Contact</th>
+                <th>Follow-Up #</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {followUps.map((item, i) => (
+                <tr key={i}>
+                  <td>{item.email}</td>
+                  <td>{item.daysSince}</td>
+                  <td>{item.followUp}</td>
+                  <td>{item.action}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      {/* Inline CSS */}
+      {/* Responsive CSS */}
       <style>{`
         .cold-email-container {
           font-family: Arial, sans-serif;
@@ -136,6 +143,13 @@ const ColdEmailStats = () => {
 
         h3 {
           margin-bottom: 10px;
+          font-size: 18px;
+        }
+
+        .table-wrapper {
+          width: 100%;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
         }
 
         table {
@@ -148,10 +162,49 @@ const ColdEmailStats = () => {
           padding: 10px;
           border: 1px solid #ddd;
           text-align: left;
+          white-space: nowrap;
         }
 
         table th {
           background: #f0f0f0;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+          .cold-email-container {
+            padding: 12px;
+          }
+
+          h2 {
+            font-size: 20px;
+          }
+
+          .stat-card {
+            padding: 10px;
+          }
+
+          .stat-card .value {
+            font-size: 16px;
+          }
+
+          table {
+            font-size: 13px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          h2 {
+            font-size: 18px;
+          }
+
+          h3 {
+            font-size: 16px;
+          }
+
+          .stat-card {
+            flex-direction: column;
+            align-items: flex-start;
+          }
         }
       `}</style>
     </div>

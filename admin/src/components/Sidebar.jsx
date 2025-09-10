@@ -16,6 +16,7 @@ const Sidebar = ({ currentPage, setCurrentPage, collapsed, setCollapsed }) => {
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'coldEmail', label: 'Cold Emails Status', icon: Mail  },
     { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'EditWebContent', label: 'EditWebContent', icon: Settings },
   ];
 
   return (

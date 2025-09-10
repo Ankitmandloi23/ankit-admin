@@ -7,6 +7,7 @@ import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
 import './App.css';
 import ColdEmailStats from './pages/ColdEmailStats';
+import EditWebContent from './pages/EditWebContent';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('dashboard');
@@ -25,6 +26,8 @@ function App() {
         return <ColdEmailStats />;
       case 'settings':
         return <Settings />;
+      case 'EditWebContent':
+        return <EditWebContent />;
       default:
         return <Dashboard />;
     }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Plus, Edit, Trash2, MoreHorizontal } from 'lucide-react';
+import './Users.css'; // we’ll move CSS here
 
 const Users = () => {
   const [users] = useState([
@@ -12,6 +13,7 @@ const Users = () => {
 
   return (
     <div className="users-page">
+      {/* Page Header */}
       <div className="page-header">
         <div>
           <h1>Users</h1>
@@ -23,6 +25,7 @@ const Users = () => {
         </button>
       </div>
       
+      {/* Controls */}
       <div className="users-controls">
         <div className="search-container">
           <Search size={20} className="search-icon" />
@@ -47,7 +50,8 @@ const Users = () => {
         </div>
       </div>
       
-      <div className="users-table-container">
+      {/* Table Wrapper with scroll */}
+      <div className="users-table-wrapper">
         <table className="users-table">
           <thead>
             <tr>
@@ -64,9 +68,7 @@ const Users = () => {
               <tr key={user.id}>
                 <td>
                   <div className="user-cell">
-                    <div className="user-avatar">
-                      {user.name.charAt(0)}
-                    </div>
+                    <div className="user-avatar">{user.name.charAt(0)}</div>
                     <span>{user.name}</span>
                   </div>
                 </td>
@@ -84,15 +86,9 @@ const Users = () => {
                 <td>{user.joinDate}</td>
                 <td>
                   <div className="action-buttons">
-                    <button className="action-btn">
-                      <Edit size={16} />
-                    </button>
-                    <button className="action-btn">
-                      <Trash2 size={16} />
-                    </button>
-                    <button className="action-btn">
-                      <MoreHorizontal size={16} />
-                    </button>
+                    <button className="action-btn"><Edit size={16} /></button>
+                    <button className="action-btn"><Trash2 size={16} /></button>
+                    <button className="action-btn"><MoreHorizontal size={16} /></button>
                   </div>
                 </td>
               </tr>
