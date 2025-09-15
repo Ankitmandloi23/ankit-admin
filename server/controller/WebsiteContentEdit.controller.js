@@ -2,7 +2,7 @@
 const { sendResponse } = require("../utils/sendResponse.js");
 const { SuccessMessage, ErrorMessage } = require("../constant/messages.js");
 const { statusCode } = require("../constant/statusCodes.js");
-const { WebsiteContent } = require("../model/WebsiteContentSchema.js");
+const  WebsiteContent  = require("../model/WebsiteContentSchema.js");
 
 
 

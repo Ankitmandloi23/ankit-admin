@@ -1,10 +1,9 @@
 const express = require("express");
-
-const WebsiteContentEdit = require("../controller/WebsiteContentEdit.controller.js");
-
+const {WebsiteGetContent, WebsiteSetContent} = require("../controller/WebsiteContentEdit.controller.js");
 const router = express.Router();
 
-router.use("/WebsiteContentEdit", WebsiteContentEdit);
+router.use("/WebsiteSetContent", WebsiteSetContent);
+router.use("/WebsiteGetContent", WebsiteGetContent);
 
 
 
