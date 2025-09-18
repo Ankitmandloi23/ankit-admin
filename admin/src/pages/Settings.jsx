@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Save, User, Bell, Shield, Palette, Lock } from 'lucide-react';
 import { toast } from "react-toastify";
-import { s } from 'framer-motion/client';
+
 
 const Settings = ({ darkMode, setDarkMode }) => {
   const [settings, setSettings] = useState({
