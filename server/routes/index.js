@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 router.use("/WebsiteContentEditRoutes", WebsiteContentEditRoutes);
-router.use("/authRoutes", authRoutes);
+router.use("/auth", authRoutes);
 
 
 

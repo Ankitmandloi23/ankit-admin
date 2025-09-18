@@ -30,7 +30,7 @@ function AdminLayout() {
       case "coldEmail":
         return <ColdEmailStats />;
       case "settings":
-        return <Settings />;
+        return <Settings darkMode={darkMode} setDarkMode={setDarkMode}/>;
       case "EditWebContent":
         return <EditWebContent />;
       default:
@@ -68,7 +68,7 @@ function App() {
     <Router>
       <Routes>
         {/* Public Route */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/admin/login" element={<Login />} />
 
         {/* Protected Admin Layout */}
         <Route

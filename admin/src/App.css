@@ -23,6 +23,11 @@
   margin: 0 auto;
 }
 
+
+.box-error {
+  font-size: small;
+  color: var(--error-color);;
+}
 /* Sidebar Styles */
 .sidebar {
   position: fixed;

@@ -66,6 +66,7 @@ exports.signUp = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
+    console.log("email, password, role", email, password, role)
 
     const user = await services.findUserForLogin(email);
 

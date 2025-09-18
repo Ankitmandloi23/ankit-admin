@@ -1,11 +1,27 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { User, Settings, LogOut } from 'lucide-react';
 import './UserDropdown.css';
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 const UserDropdown = () => {
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef(null);
 
+
+     const navigate = useNavigate();
+    
+
+
+    const handleSignOut = () => {
+    toast.success('Logged out successfully! Redirecting to login...')
+    setTimeout(() => {
+      localStorage.removeItem('admin-token');
+      navigate('/admin/login');
+    }, 2000);
+
+
+  };
     // Close dropdown on outside click
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -17,10 +33,7 @@ const UserDropdown = () => {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const handleLogout = () => {
-        console.log("Logging out...");
-        // Add actual logout logic here
-    };
+
 
 
     return (
@@ -50,7 +63,7 @@ const UserDropdown = () => {
                         <Settings size={16} style={{ marginRight: 8 }} /> Settings
                     </div>
                     <hr />
-                    <div className="dropdown-item logout" onClick={handleLogout}>
+                    <div className="dropdown-item logout" onClick={handleSignOut}>
                         <LogOut size={16} style={{ marginRight: 8 }} /> Log out
                     </div>
                 </div>
