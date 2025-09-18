@@ -4,22 +4,14 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const PORT = process.env.SERVER_PORT || 8080;
-// const axios = require('axios');
 const cors = require('cors');
 const routes = require("../server/routes");
 const { dbConnection } = require('./config/db.js');
-// const { initSocket } = require('./socket'); // adjust path
-// const helmet = require('helmet');
-// const multer = require('multer');
-// const { startScheduler } = require("./scheduler/cronJob.js");
-// const { ConnectCloadinary } = require('./config/cloudinary.js');
+const helmet = require('helmet');
 
 
-// // ConnectCloadinary();
 
-
-// // Setup middlewares
-// app.use(helmet());
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({
@@ -37,14 +29,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 
-// // Routes
+
  app.use("/api", routes);
 
-// // startScheduler(); // start scheduled sync for product S&S to Shopify
 
 
 
-// // Test route
+
 app.use("/", (req, res) => res.send("✔ Yes, Now you can hit APIs"));
 
 const startServer = async () => {
@@ -53,8 +44,6 @@ const startServer = async () => {
     server.listen(PORT, () => {
       console.log(`Server is ready to listen on port ${PORT}`);
     });
-    //for real sync
-    // initSocket(server);
   } catch (err) {
     console.error(`Someting Went Wrong in Start Server, Error is  ${err}`);
     process.exit(1);
