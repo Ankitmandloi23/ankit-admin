@@ -8,15 +8,16 @@ import {
   ChevronRight,
   Mail 
 } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 
-const Sidebar = ({ currentPage, setCurrentPage, collapsed, setCollapsed }) => {
+const Sidebar = ({ collapsed, setCollapsed }) => {
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'users', label: 'Users', icon: Users },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
-    { id: 'coldEmail', label: 'Cold Emails Status', icon: Mail  },
-    { id: 'settings', label: 'Settings', icon: Settings },
-    { id: 'EditWebContent', label: 'EditWebContent', icon: Settings },
+    { path: '/', label: 'Dashboard', icon: LayoutDashboard },
+    { path: '/users', label: 'Users', icon: Users },
+    { path: '/analytics', label: 'Analytics', icon: BarChart3 },
+    { path: '/cold-email', label: 'Cold Emails Status', icon: Mail },
+    { path: '/settings', label: 'Settings', icon: Settings },
+    { path: '/edit-web-content', label: 'Edit Web Content', icon: Settings },
   ];
 
   return (
@@ -37,14 +38,16 @@ const Sidebar = ({ currentPage, setCurrentPage, collapsed, setCollapsed }) => {
         {menuItems.map((item) => {
           const Icon = item.icon;
           return (
-            <button
-              key={item.id}
-              className={`nav-item ${currentPage === item.id ? 'active' : ''}`}
-              onClick={() => setCurrentPage(item.id)}
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? 'active' : ''}`
+              }
             >
               <Icon size={20} />
               {!collapsed && <span>{item.label}</span>}
-            </button>
+            </NavLink>
           );
         })}
       </nav>

@@ -2,13 +2,13 @@
 const { sendResponse } = require("../utils/sendResponse.js");
 const { SuccessMessage, ErrorMessage } = require("../constant/messages.js");
 const { statusCode } = require("../constant/statusCodes.js");
-const  WebsiteContent  = require("../model/WebsiteContentSchema.js");
+const WebsiteContent = require("../model/WebsiteContentSchema.js");
 
 
 
 // Get content by section (for frontend site)
 exports.WebsiteGetContent = async (req, res) => {
-  const content = await WebsiteContent.findOne({ section: req.params.section });
+  const content = await WebsiteContent.find();
   return sendResponse(res, statusCode.OK, false, SuccessMessage.CONTENT_FETCHED, content);
 
 };
@@ -16,21 +16,22 @@ exports.WebsiteGetContent = async (req, res) => {
 
 // Update or create content (for admin panel)
 exports.WebsiteSetContent = async (req, res) => {
-  const { title, description, points } = req.body;
-  let content = await WebsiteContent.findOne({ section: req.params.section });
+  const updates = req.body;
 
-  if (!content) {
-    content = new WebsiteContent({ section: req.params.section, title, description, points });
-  } else {
-    content.title = title;
-    content.description = description;
-    content.points = points;
-    content.updatedAt = new Date();
-  }
+  
+    await WebsiteContent.findOneAndUpdate(
+      { key },
+      { value },
+      { upsert: true, new: true }
+    );
+  
 
-  await content.save();
-  return sendResponse(res, statusCode.OK, true, SuccessMessage.CONTENT_UPDATED, content);
-}
+  // Return plain array so frontend can use .find
+  const content = await WebsiteContent.find({});
+  res.json(content);
+};
+
+
 
 
 

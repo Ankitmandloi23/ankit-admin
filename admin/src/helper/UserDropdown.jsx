@@ -59,7 +59,7 @@ const UserDropdown = () => {
                     <div className="dropdown-item">
                         <User size={16} style={{ marginRight: 8 }} /> Profile
                     </div>
-                    <div className="dropdown-item">
+                    <div className="dropdown-item" onClick={()=> navigate("/settings")}>
                         <Settings size={16} style={{ marginRight: 8 }} /> Settings
                     </div>
                     <hr />

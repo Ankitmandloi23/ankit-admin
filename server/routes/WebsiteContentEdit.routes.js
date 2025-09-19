@@ -7,8 +7,9 @@ const router = express.Router();
 
 
 
-router.get('/WebsiteGetContent',customerValidation.customerRegister, controllers.WebsiteGetContent);
-router.post('/WebsiteSetContent',customerValidation.customerRegister, controllers.WebsiteSetContent);
+router.get('/webSiteGetContent', controllers.WebsiteGetContent);
+//update or create content
+router.post('/WebsiteSetContent', controllers.WebsiteSetContent);
 
 
 

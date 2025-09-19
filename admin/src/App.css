@@ -77,34 +77,55 @@
 .sidebar-nav {
   padding: 1rem 0;
 }
-
 .nav-item {
+  text-decoration: none;
   display: flex;
   align-items: center;
   width: 100%;
   padding: 0.75rem 1rem;
-  background: none;
   border: none;
+  border-radius: 8px; /* rounded look */
   color: var(--text-secondary);
+  background: transparent;
   cursor: pointer;
-  transition: all 0.2s ease;
   gap: 0.75rem;
   font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.25s ease-in-out;
+}
+
+.nav-item svg {
+  flex-shrink: 0; /* keeps icons aligned */
+  transition: transform 0.25s ease;
 }
 
 .nav-item:hover {
-  background-color: var(--bg-hover);
+  background: var(--bg-hover);
   color: var(--text-primary);
 }
 
+.nav-item:hover svg {
+  transform: scale(1.1); /* subtle icon pop */
+}
+
 .nav-item.active {
-  background-color: var(--primary-color);
-  color: white;
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* active glow */
 }
 
 .nav-item.active:hover {
-  background-color: var(--primary-hover);
+  background: var(--primary-hover);
 }
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* spacing between items */
+  padding: 0.5rem;
+}
+
 
 /* Header Styles */
 .header {

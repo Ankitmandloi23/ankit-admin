@@ -10,46 +10,20 @@ import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 import ColdEmailStats from "./pages/ColdEmailStats";
 import EditWebContent from "./pages/EditWebContent";
-import Login from "./pages/Login";   // your login page
-import ProtectedRoute from "./pages/ProtectedRoute"; 
+import Login from "./pages/Login";
+import ProtectedRoute from "./pages/ProtectedRoute";
 import "./App.css";
 
 function AdminLayout() {
-  const [currentPage, setCurrentPage] = useState("dashboard");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case "dashboard":
-        return <Dashboard />;
-      case "users":
-        return <Users />;
-      case "analytics":
-        return <Analytics />;
-      case "coldEmail":
-        return <ColdEmailStats />;
-      case "settings":
-        return <Settings darkMode={darkMode} setDarkMode={setDarkMode}/>;
-      case "EditWebContent":
-        return <EditWebContent />;
-      default:
-        return <Dashboard />;
-    }
-  };
-
   return (
     <div className={`app ${darkMode ? "dark" : ""}`}>
-      <Sidebar
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        collapsed={sidebarCollapsed}
-        setCollapsed={setSidebarCollapsed}
-      />
+      <Sidebar collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} />
+
       <div
-        className={`main-content ${
-          sidebarCollapsed ? "sidebar-collapsed" : ""
-        }`}
+        className={`main-content ${sidebarCollapsed ? "sidebar-collapsed" : ""}`}
       >
         <Header
           darkMode={darkMode}
@@ -57,7 +31,21 @@ function AdminLayout() {
           sidebarCollapsed={sidebarCollapsed}
           setSidebarCollapsed={setSidebarCollapsed}
         />
-        <main className="page-content">{renderPage()}</main>
+
+        {/* Protected Routes */}
+        <main className="page-content">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/cold-email" element={<ColdEmailStats />} />
+            <Route
+              path="/settings"
+              element={<Settings darkMode={darkMode} setDarkMode={setDarkMode} />}
+            />
+            <Route path="/edit-web-content" element={<EditWebContent />} />
+          </Routes>
+        </main>
       </div>
     </div>
   );
@@ -67,10 +55,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Public Route */}
+        {/* Public Login Route */}
         <Route path="/admin/login" element={<Login />} />
 
-        {/* Protected Admin Layout */}
+        {/* All Admin Routes Protected */}
         <Route
           path="/*"
           element={
@@ -80,7 +68,8 @@ function App() {
           }
         />
       </Routes>
-        <ToastContainer
+
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
